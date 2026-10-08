@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jornada dos Saberes - RPG Educativo 6º Ano</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- TELA DE INÍCIO / START SCREEN -->
+  <div id="screenStart" class="screen active">
+    <div class="stars-bg"></div>
+    <div class="start-container">
+      <h1 class="game-title">JORNADA DOS SABERES</h1>
+      <p class="game-subtitle">DESAFIO DOS GUARDIÕES DA SABEDORIA - 6º ANO</p>
+
+      <div class="heart-container-main">
+        <div class="pixel-heart-large"></div>
+      </div>
+
+      <div class="menu-buttons">
+        <button id="btnPlay" class="ut-btn-large">⚔️ JOGAR / PLAY</button>
+        <button id="btnOptions" class="ut-btn-large">⚙️ CONFIGURAÇÕES</button>
+        <button id="btnCredits" class="ut-btn-large">📜 CRÉDITOS</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SELEÇÃO DE MATÉRIA -->
+  <div id="screenSubjects" class="screen hidden">
+    <header class="header-ut">
+      <button id="btnBackToStart" class="ut-btn-small">⬅️ INÍCIO</button>
+      <h2>ESCOLHA UMA DISCIPLINA</h2>
+    </header>
+    <main class="subjects-grid">
+      <button class="subject-card" data-subject="matematica">
+        <div class="subject-icon">📐</div>
+        <h3>MATEMÁTICA</h3>
+        <p>5 Guardiões</p>
+      </button>
+      <button class="subject-card" data-subject="portugues">
+        <div class="subject-icon">📚</div>
+        <h3>PORTUGUÊS</h3>
+        <p>5 Guardiões</p>
+      </button>
+      <button class="subject-card" data-subject="ciencias">
+        <div class="subject-icon">🔬</div>
+        <h3>CIÊNCIAS</h3>
+        <p>5 Guardiões</p>
+      </button>
+      <button class="subject-card" data-subject="historia">
+        <div class="subject-icon">🏛️</div>
+        <h3>HISTÓRIA</h3>
+        <p>5 Guardiões</p>
+      </button>
+      <button class="subject-card" data-subject="geografia">
+        <div class="subject-icon">🌍</div>
+        <h3>GEOGRAFIA</h3>
+        <p>5 Guardiões</p>
+      </button>
+      <button class="subject-card" data-subject="ingles">
+        <div class="subject-icon">🔤</div>
+        <h3>INGLÊS</h3>
+        <p>5 Guardiões</p>
+      </button>
+    </main>
+  </div>
+
+  <!-- BATALHA COM O BOSS -->
+  <div id="screenBattle" class="screen hidden">
+    <header class="battle-header">
+      <button id="btnQuitBattle" class="ut-btn-small">🏃 FUGIR</button>
+      <div id="subjectBadge" class="badge">MATEMÁTICA</div>
+      <div id="bossProgress" class="badge">CHEFÃO 1/5</div>
+    </header>
+
+    <main class="battle-canvas">
+      <!-- Cenário e Boss -->
+      <div class="boss-arena">
+        <div class="landscape-element mountain-back"></div>
+        <div class="landscape-element moon-sun"></div>
+        
+        <div id="bossContainer" class="boss-entity">
+          <div id="bossSprite" class="boss-pixel-art">📐</div>
+        </div>
+
+        <div class="boss-hp-box">
+          <span id="bossName" class="boss-name-label">GUARDIÃO DOS MÚLTIPLOS</span>
+          <div class="hp-bar-bg">
+            <div id="bossHpBar" class="hp-bar-fill boss-fill" style="width: 100%;"></div>
+          </div>
+          <span id="bossHpText" class="hp-text">100 / 100 HP</span>
+        </div>
+      </div>
+
+      <!-- Diálogo estilo Undertale -->
+      <div class="undertale-dialogue-box">
+        <div class="dialogue-avatar">*</div>
+        <div id="bossDialogueText" class="dialogue-text"></div>
+      </div>
+
+      <!-- Caixa de Pergunta -->
+      <div class="question-container">
+        <p id="questionText" class="question-prompt">Carregando pergunta...</p>
+        <div id="optionsContainer" class="options-grid"></div>
+      </div>
+
+      <!-- Status do Jogador -->
+      <footer class="player-status-bar">
+        <div class="player-name">JOGADOR (ALMA)</div>
+        <div class="hp-box-player">
+          <span>HP</span>
+          <div class="hp-bar-bg small">
+            <div id="playerHpBar" class="hp-bar-fill player-fill" style="width: 100%;"></div>
+          </div>
+          <span id="playerHpText">20 / 20</span>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <!-- TELA DE VITÓRIA -->
+  <div id="screenVictory" class="screen hidden">
+    <div class="victory-card">
+      <h1 class="victory-title">VITÓRIA CONQUISTADA!</h1>
+      <p id="victoryBossName" class="victory-sub">VOCÊ DERROTOU O GUARDIÃO</p>
+      
+      <div class="victory-stats">
+        <p>⚡ XP Ganho: <span id="victoryXP">100</span> XP</p>
+        <p>🎯 Precisão: <span id="victoryAccuracy">100%</span></p>
+      </div>
+
+      <div class="victory-actions">
+        <button id="btnNextBoss" class="ut-btn-large highlight">⚔️ PRÓXIMO BOSS</button>
+        <button id="btnVictoryToMenu" class="ut-btn-large">📋 MENU DE DISCIPLINAS</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TELA DE GAME OVER -->
+  <div id="screenGameOver" class="screen hidden">
+    <div class="gameover-container">
+      <h1 class="gameover-title">GAME OVER</h1>
+      
+      <div class="heart-animation-area">
+        <div id="heartBroken" class="pixel-heart-broken"></div>
+      </div>
+
+      <p class="gameover-msg">Não desista! Mantenha sua determinação e tente novamente.</p>
+
+      <button id="btnRetry" class="ut-btn-large highlight">🔄 TENTAR NOVAMENTE</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
